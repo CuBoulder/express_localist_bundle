@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Express Localist Bundle feature.
+ */
+
+include_once 'express_localist_bundle.features.inc';
