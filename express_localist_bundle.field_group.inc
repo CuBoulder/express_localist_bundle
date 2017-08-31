@@ -13,15 +13,72 @@ function express_localist_bundle_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_localist_display|bean|localist_events|form';
-  $field_group->group_name = 'group_localist_display';
+  $field_group->identifier = 'group_localist_category|bean|localist_events|form';
+  $field_group->group_name = 'group_localist_category';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'localist_events';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_localist_filters';
+  $field_group->data = array(
+    'label' => 'Category',
+    'weight' => '9',
+    'children' => array(
+      0 => 'field_localist_category',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Category',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'group-localist-category field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $field_groups['group_localist_category|bean|localist_events|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_localist_config|bean|localist_events|form';
+  $field_group->group_name = 'group_localist_config';
   $field_group->entity_type = 'bean';
   $field_group->bundle = 'localist_events';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Display Options',
-    'weight' => '13',
+    'label' => 'Configuration',
+    'weight' => '2',
+    'children' => array(
+      0 => 'group_localist_display',
+      1 => 'group_localist_filters',
+      2 => 'group_localist_options',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-localist-config field-group-htabs',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_localist_config|bean|localist_events|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_localist_display|bean|localist_events|form';
+  $field_group->group_name = 'group_localist_display';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'localist_events';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_localist_config';
+  $field_group->data = array(
+    'label' => 'Display',
+    'weight' => '9',
     'children' => array(
       0 => 'field_localist_widget_type',
       1 => 'field_localist_style',
@@ -32,16 +89,15 @@ function express_localist_bundle_field_group_info() {
       6 => 'field_localist_hide_times',
       7 => 'field_localist_new_window',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Display Options',
+      'label' => 'Display',
       'instance_settings' => array(
         'required_fields' => 1,
-        'id' => '',
-        'classes' => 'group-localist-display field-group-fieldset',
+        'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'closed',
     ),
   );
   $field_groups['group_localist_display|bean|localist_events|form'] = $field_group;
@@ -54,26 +110,95 @@ function express_localist_bundle_field_group_info() {
   $field_group->entity_type = 'bean';
   $field_group->bundle = 'localist_events';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
     'label' => 'Excluded Content',
-    'weight' => '12',
+    'weight' => '18',
     'children' => array(
       0 => 'field_localist_type_excluded',
       1 => 'field_localist_hide_past_events',
+      2 => 'field_localist_category_excluded',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Excluded Content',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-localist-excluded field-group-fieldset',
         'required_fields' => 1,
         'id' => '',
+        'classes' => 'group-localist-excluded field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'collapsed',
     ),
   );
   $field_groups['group_localist_excluded|bean|localist_events|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_localist_filters|bean|localist_events|form';
+  $field_group->group_name = 'group_localist_filters';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'localist_events';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_localist_config';
+  $field_group->data = array(
+    'label' => 'Filters',
+    'weight' => '8',
+    'children' => array(
+      0 => 'field_localist_show_featured',
+      1 => 'field_localist_show_sponsored',
+      2 => 'field_localist_include_matching',
+      3 => 'field_localist_content_match',
+      4 => 'group_localist_excluded',
+      5 => 'group_localist_places',
+      6 => 'group_localist_type',
+      7 => 'group_localist_tags',
+      8 => 'group_localist_category',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Filters',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => 'Return events with any of these filter values.',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_localist_filters|bean|localist_events|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_localist_options|bean|localist_events|form';
+  $field_group->group_name = 'group_localist_options';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'localist_events';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_localist_config';
+  $field_group->data = array(
+    'label' => 'Options',
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_localist_results',
+      1 => 'field_localist_days_ahead',
+      2 => 'field_localist_start_date',
+      3 => 'field_localist_skip_recurring',
+      4 => 'field_localist_all_instances',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-localist-options field-group-htab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_localist_options|bean|localist_events|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -83,10 +208,10 @@ function express_localist_bundle_field_group_info() {
   $field_group->entity_type = 'bean';
   $field_group->bundle = 'localist_events';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
     'label' => 'Places',
-    'weight' => '9',
+    'weight' => '12',
     'children' => array(
       0 => 'field_localist_places',
     ),
@@ -112,10 +237,10 @@ function express_localist_bundle_field_group_info() {
   $field_group->entity_type = 'bean';
   $field_group->bundle = 'localist_events';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
     'label' => 'Keywords and Tags',
-    'weight' => '4',
+    'weight' => '11',
     'children' => array(
       0 => 'field_localist_tags',
     ),
@@ -141,10 +266,10 @@ function express_localist_bundle_field_group_info() {
   $field_group->entity_type = 'bean';
   $field_group->bundle = 'localist_events';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
     'label' => 'Type',
-    'weight' => '10',
+    'weight' => '13',
     'children' => array(
       0 => 'field_localist_event_type',
     ),
@@ -164,9 +289,13 @@ function express_localist_bundle_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Display Options');
+  t('Category');
+  t('Configuration');
+  t('Display');
   t('Excluded Content');
+  t('Filters');
   t('Keywords and Tags');
+  t('Options');
   t('Places');
   t('Type');
 

@@ -10,6 +10,78 @@
 function express_localist_bundle_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_localist_all_instances'.
+  $field_bases['field_localist_all_instances'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_all_instances',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_localist_category'.
+  $field_bases['field_localist_category'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_category',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'express_localist_bundle_category_options',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_localist_category_excluded'.
+  $field_bases['field_localist_category_excluded'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_category_excluded',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'express_localist_bundle_category_options',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_localist_content_match'.
   $field_bases['field_localist_content_match'] = array(
     'active' => 1,
@@ -26,7 +98,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_content_match_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -64,7 +136,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_type_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -243,7 +315,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_places_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -343,6 +415,61 @@ function express_localist_bundle_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
+  // Exported field_base: 'field_localist_skip_recurring'.
+  $field_bases['field_localist_skip_recurring'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_skip_recurring',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_localist_start_date'.
+  $field_bases['field_localist_start_date'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_start_date',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => '',
+      'tz_handling' => 'none',
+    ),
+    'translatable' => 0,
+    'type' => 'datetime',
+  );
+
   // Exported field_base: 'field_localist_style'.
   $field_bases['field_localist_style'] = array(
     'active' => 1,
@@ -359,7 +486,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_style_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -382,7 +509,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_tags_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -454,7 +581,7 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => '',
+      'allowed_values_function' => 'express_localist_bundle_widget_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
