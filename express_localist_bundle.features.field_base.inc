@@ -36,52 +36,6 @@ function express_localist_bundle_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_localist_category'.
-  $field_bases['field_localist_category'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_category',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_category_options',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
-  // Exported field_base: 'field_localist_category_excluded'.
-  $field_bases['field_localist_category_excluded'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_category_excluded',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_category_options',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_localist_content_match'.
   $field_bases['field_localist_content_match'] = array(
     'active' => 1,
@@ -120,13 +74,13 @@ function express_localist_bundle_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_localist_event_type'.
-  $field_bases['field_localist_event_type'] = array(
+  // Exported field_base: 'field_localist_departments'.
+  $field_bases['field_localist_departments'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_localist_event_type',
+    'field_name' => 'field_localist_departments',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -136,7 +90,114 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_type_options',
+      'allowed_values_function' => 'express_localist_bundle_departments_options',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_localist_departments_excl'.
+  $field_bases['field_localist_departments_excl'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_departments_excl',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'express_localist_bundle_departments_options',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_localist_filters'.
+  $field_bases['field_localist_filters'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_filters',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_localist_filters_excluded'.
+  $field_bases['field_localist_filters_excluded'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_filters_excluded',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_localist_groups'.
+  $field_bases['field_localist_groups'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_groups',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'express_localist_bundle_group_options',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_localist_groups_excluded'.
+  $field_bases['field_localist_groups_excluded'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_localist_groups_excluded',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'express_localist_bundle_group_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
@@ -496,24 +557,22 @@ function express_localist_bundle_field_default_field_bases() {
   // Exported field_base: 'field_localist_tags'.
   $field_bases['field_localist_tags'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_localist_tags',
     'indexes' => array(
-      'value' => array(
-        0 => 'value',
+      'format' => array(
+        0 => 'format',
       ),
     ),
     'locked' => 0,
-    'module' => 'list',
+    'module' => 'text',
     'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_tags_options',
-      'allowed_values_php' => '',
+      'max_length' => 255,
     ),
     'translatable' => 0,
-    'type' => 'list_text',
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_localist_truncate_desc'.
@@ -540,29 +599,6 @@ function express_localist_bundle_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
-  );
-
-  // Exported field_base: 'field_localist_type_excluded'.
-  $field_bases['field_localist_type_excluded'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_type_excluded',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => '',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_localist_widget_type'.
