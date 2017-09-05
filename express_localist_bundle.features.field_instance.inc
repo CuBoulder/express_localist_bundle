@@ -165,42 +165,7 @@ function express_localist_bundle_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 42,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'bean-localist_events-field_localist_departments_excl'.
-  $field_instances['bean-localist_events-field_localist_departments_excl'] = array(
-    'bundle' => 'localist_events',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'default_value_php' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 29,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'fences_wrapper' => 'no_wrapper',
-    'field_name' => 'field_localist_departments_excl',
-    'label' => 'Departments',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 60,
+      'weight' => 66,
     ),
   );
 
@@ -316,41 +281,6 @@ function express_localist_bundle_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_buttons',
       'weight' => 44,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'bean-localist_events-field_localist_groups_excluded'.
-  $field_instances['bean-localist_events-field_localist_groups_excluded'] = array(
-    'bundle' => 'localist_events',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'default_value_php' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 28,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'fences_wrapper' => 'no_wrapper',
-    'field_name' => 'field_localist_groups_excluded',
-    'label' => 'Groups',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 60,
     ),
   );
 
@@ -516,44 +446,60 @@ function express_localist_bundle_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'bean-localist_events-field_localist_include_matching'.
-  $field_instances['bean-localist_events-field_localist_include_matching'] = array(
+  // Exported field_instance: 'bean-localist_events-field_localist_link'.
+  $field_instances['bean-localist_events-field_localist_link'] = array(
     'bundle' => 'localist_events',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'default_value_function' => '',
-    'default_value_php' => FALSE,
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'list',
+        'label' => 'hidden',
+        'module' => 'link',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
+        'type' => 'link_default',
+        'weight' => 31,
       ),
     ),
     'entity_type' => 'bean',
-    'fences_wrapper' => 'div_div_div',
-    'field_name' => 'field_localist_include_matching',
-    'label' => 'Include All Matching Instances',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_localist_link',
+    'label' => 'Link',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 1,
+        'profile' => 'express_linkit_field_profile',
+      ),
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
       'user_register_form' => FALSE,
+      'validate_url' => 1,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 62,
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 8,
     ),
   );
 
@@ -1059,8 +1005,8 @@ function express_localist_bundle_field_default_field_instances() {
   t('Hide Event Images');
   t('Hide Event Times');
   t('Hide Past Events');
-  t('Include All Matching Instances');
   t('Keywords and Tags');
+  t('Link');
   t('Number of Results');
   t('Number of days in the future to look at (1-365).');
   t('Number of events to return (1-50).');

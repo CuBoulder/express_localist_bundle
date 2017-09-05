@@ -39,7 +39,9 @@ function express_localist_bundle_flush_caches() {
   return array('express_localist_bundle');
 }
 
-
+/**
+ * Get cached options.
+ */
 function express_localist_bundle_api_cache_get($key) {
   $cid = 'express_localist_bundle:' . $key;
   // If this request was cached, return the cached value
@@ -49,6 +51,9 @@ function express_localist_bundle_api_cache_get($key) {
   return FALSE;
 }
 
+/**
+ * Save options to cache.
+ */
 function express_localist_bundle_api_cache_save($key, $value) {
   $cid = 'express_localist_bundle:' . $key;
   cache_set($cid, $value, 'express_localist_bundle', 3600);
@@ -108,7 +113,7 @@ function express_localist_bundle_departments_options() {
   }
 
   foreach ($terms['departments'] as $group) {
-    $id = $group['department']['id'];
+    $id = $group['department']['urlname'];
     $name = $group['department']['name'];
     $groups[$id] = $name;
   }
@@ -138,9 +143,8 @@ function express_localist_bundle_group_options() {
       express_localist_bundle_api_cache_save($end_point, $terms);
     }
   }
-
   foreach ($terms['groups'] as $group) {
-    $id = $group['group']['id'];
+    $id = $group['group']['urlname'];
     $name = $group['group']['name'];
     $groups[$id] = $name;
   }
@@ -269,7 +273,6 @@ function express_localist_bundle_preprocess_entity(&$vars) {
 
     $values['picks'] = $vars['field_localist_show_featured'][0]['value'];
     $values['sponsored'] = $vars['field_localist_show_sponsored'][0]['value'];
-    $values['include_matching'] = $vars['field_localist_include_matching'][0]['value'];
     $values['content_match'] = $vars['field_localist_content_match'][0]['value'];
     $values['hide_past'] = $vars['field_localist_hide_past_events'][0]['value'];
     $values['hidedesc'] = $vars['field_localist_hide_descriptions'][0]['value'];
@@ -282,6 +285,14 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $values['all_instances'] = $vars['field_localist_all_instances'][0]['value'];
 
     $values['template'] = $vars['field_localist_style'][0]['value'];
+
+    // Filters
+
+    $values['types'] = !empty($vars['field_localist_filters']) ? $vars['field_localist_filters'][0]['value'] : 0;
+    $values['exclude_types'] = !empty($vars['field_localist_filters_departments']) ? $vars['field_localist_filters_departments'][0]['value'] : 0;
+    $values['departments'] = !empty($vars['field_localist_departments']) ? $vars['field_localist_departments'][0]['value'] : 0;
+    $values['groups'] = !empty($vars['field_localist_groups']) ? $vars['field_localist_groups'][0]['value'] : 0;
+    $values['tags'] = !empty($vars['field_localist_tags']) ? $vars['field_localist_tags'][0]['value'] : 0;
 
     $configs = array();
     foreach ($values as $key => $value) {
@@ -479,7 +490,10 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
   $submitted = array();
   foreach ($filters as $key => $filter) {
     if ($key == $filter) {
-      $submitted = $submitted + array_filter($form_state['values'][$key]);
+      $new_values = array_filter($form_state['values'][$key]);
+      if (!empty($new_values)) {
+        $submitted = $submitted + array_filter($form_state['values'][$key]);
+      }
     }
   }
   $form_state['values']['field_localist_filters'][LANGUAGE_NONE][0]['value'] = join(',', $submitted);
@@ -488,7 +502,10 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
   $submitted = array();
   foreach ($filters as $key => $filter) {
     if ($key == $filter) {
-      $submitted = $submitted + array_filter($form_state['values'][$key . '_excluded']);
+      $new_values = array_filter($form_state['values'][$key]);
+      if (!empty($new_values)) {
+        $submitted = $submitted + array_filter($form_state['values'][$key . '_excluded']);
+      }
     }
   }
   $form_state['values']['field_localist_filters_excluded'][LANGUAGE_NONE][0]['value'] = join(',', $submitted);

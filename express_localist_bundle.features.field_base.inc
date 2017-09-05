@@ -77,33 +77,10 @@ function express_localist_bundle_field_default_field_bases() {
   // Exported field_base: 'field_localist_departments'.
   $field_bases['field_localist_departments'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_localist_departments',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_departments_options',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
-  // Exported field_base: 'field_localist_departments_excl'.
-  $field_bases['field_localist_departments_excl'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_departments_excl',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -161,33 +138,10 @@ function express_localist_bundle_field_default_field_bases() {
   // Exported field_base: 'field_localist_groups'.
   $field_bases['field_localist_groups'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_localist_groups',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_group_options',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
-  // Exported field_base: 'field_localist_groups_excluded'.
-  $field_bases['field_localist_groups_excluded'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_groups_excluded',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -308,30 +262,33 @@ function express_localist_bundle_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_localist_include_matching'.
-  $field_bases['field_localist_include_matching'] = array(
+  // Exported field_base: 'field_localist_link'.
+  $field_bases['field_localist_link'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_localist_include_matching',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
+    'field_name' => 'field_localist_link',
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'list',
+    'module' => 'link',
     'settings' => array(
-      'allowed_values' => array(
-        0 => '',
-        1 => '',
+      'attributes' => array(
+        'class' => '',
+        'rel' => '',
+        'target' => 'default',
       ),
-      'allowed_values_function' => '',
-      'allowed_values_php' => '',
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
     ),
     'translatable' => 0,
-    'type' => 'list_boolean',
+    'type' => 'link_field',
   );
 
   // Exported field_base: 'field_localist_new_window'.

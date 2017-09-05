@@ -68,7 +68,7 @@ function express_localist_bundle_field_group_info() {
   $field_groups['group_localist_config|bean|localist_events|form'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_localist_department_excl|bean|localist_events|form';
   $field_group->group_name = 'group_localist_department_excl';
@@ -175,8 +175,6 @@ function express_localist_bundle_field_group_info() {
     'children' => array(
       0 => 'field_localist_hide_past_events',
       1 => 'field_localist_filters_excluded',
-      2 => 'group_localist_group_exclude',
-      3 => 'group_localist_department_excl',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -203,12 +201,11 @@ function express_localist_bundle_field_group_info() {
   $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
     'label' => 'Filtering Options',
-    'weight' => '49',
+    'weight' => '0',
     'children' => array(
       0 => 'field_localist_show_featured',
       1 => 'field_localist_show_sponsored',
-      2 => 'field_localist_include_matching',
-      3 => 'field_localist_content_match',
+      2 => 'field_localist_content_match',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -258,7 +255,7 @@ function express_localist_bundle_field_group_info() {
   $field_groups['group_localist_filters|bean|localist_events|form'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_localist_group_exclude|bean|localist_events|form';
   $field_group->group_name = 'group_localist_group_exclude';
@@ -333,6 +330,7 @@ function express_localist_bundle_field_group_info() {
       2 => 'field_localist_start_date',
       3 => 'field_localist_skip_recurring',
       4 => 'field_localist_all_instances',
+      5 => 'field_localist_link',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
