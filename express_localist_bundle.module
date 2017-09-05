@@ -294,6 +294,12 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $values['groups'] = !empty($vars['field_localist_groups']) ? $vars['field_localist_groups'][0]['value'] : 0;
     $values['tags'] = !empty($vars['field_localist_tags']) ? $vars['field_localist_tags'][0]['value'] : 0;
 
+    // Start Date
+    if (!empty($vars['field_localist_start_date'])) {
+      $start_date = strtotime($vars['field_localist_start_date'][0]['value']);
+      $start_date = date('Y-m-d', $start_date);
+      $values['start'] = $start_date;
+    }
     $configs = array();
     foreach ($values as $key => $value) {
       // Special rules for configs come first.
