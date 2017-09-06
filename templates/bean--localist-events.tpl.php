@@ -1,4 +1,4 @@
-<div class="localist-events">
+<div class="localist-events <?php print $localist_classes; ?>">
   <script type="text/javascript"
 src="<?php print $widget_url; ?>"></script>
 </div>

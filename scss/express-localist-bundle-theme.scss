@@ -1,7 +1,103 @@
+$blue: #007BC8;
+$cugold: #CFB87C;
+
 .localist-events {
   .localist-wrapper {
     .le-date-day {
       font-weight: 900;
     }
+  }
+  .localist-link {
+    clear: both;
+  }
+}
+
+.localist-events {
+  #lw {
+    background: none;
+  }
+  .lwn,
+  .lwd,
+  .lwn0,
+  .lwl,
+  .lwl0 {
+    color: inherit;
+  }
+
+  .le-wrapper {
+    border-bottom-color: rgba(#757575, .35);
+  }
+  .localist_widget_container span.lw_event_item_date {
+    background:rgba(0,0,0,.75);
+    font-weight:bold;
+  }
+  .localist_widget_container {
+    background: none;
+    li.lw_event_item {
+      background: none;
+      border:1px solid rgba(#757575, .25);
+      font:inherit;
+    }
+    .action_button {
+      a:link,
+      a:visited {
+        color:#555;
+        //background: $blue;
+      }
+    }
+  }
+  .localist_minicalendar_events:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .localist_minicalendar {
+    .localist_minicalendar_pager {
+      a:link,
+      a:visited {
+        color:#fff !important;
+        background-color: $blue;
+      }
+      a:hover {
+        background-color: #444;
+      }
+      a.disabled:link,
+      a.disabled:visited {
+        color:#999 !important;
+        background-color: #ddd;
+      }
+    }
+    .localist_minicalendar_minicalendar {
+      background:none;
+      border:none;
+      th {
+        background: none;
+        color: inherit;
+      }
+      td {
+        background-color: #f2f2f2;
+        &:hover {
+          background: #e0e0e0;
+        }
+        a {
+          color:darken($blue, 10%) !important;
+        }
+        a:hover {
+          background:none;
+          font-weight: inherit;
+        }
+      }
+      .localist_minicalendar_today {
+        background: $blue;
+        border-bottom: inherit;
+        a:link,
+        a:visited {
+          color:#fff !important;
+        }
+      }
+    }
+  }
+  .localist-widget-hl .event-card .content p {
+    font-family: inherit;
   }
 }

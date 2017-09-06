@@ -89,6 +89,15 @@ function express_localist_bundle_places_options() {
   return $options;
 }
 
+function express_localist_bundle_minical_layout_options() {
+  $options = array(
+    'vertical' => 'Vertical',
+    'horizontal' => 'Horizontal',
+  );
+
+  return $options;
+}
+
 function express_localist_bundle_departments_options() {
   $groups = array();
   $end_point = variable_get('express_localist_url', NULL);
@@ -300,6 +309,15 @@ function express_localist_bundle_preprocess_entity(&$vars) {
       $start_date = date('Y-m-d', $start_date);
       $values['start'] = $start_date;
     }
+
+    // Mini Calendar Layout
+    $layout = $vars['field_localist_minical_layout'][0]['value'];
+    $type = $vars['field_localist_widget_type'][0]['value'];
+    $localist_classes = array();
+    $localist_classes[] = 'localist-' . $type;
+    $localist_classes[] = 'localist-layout-' . $layout;
+
+
     $configs = array();
     foreach ($values as $key => $value) {
       // Special rules for configs come first.
@@ -321,7 +339,7 @@ function express_localist_bundle_preprocess_entity(&$vars) {
       }
     }
 
-    $type = $vars['field_localist_widget_type'][0]['value'];
+    $vars['localist_classes'] = join(' ', $localist_classes);
     $vars['widget_url'] = $end_point . '/widget/' . $type . '?' . join('&', $configs);
     $vars['widget_configs'] = $configs;
   }
@@ -339,6 +357,13 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
       unset($form['field_localist_start_date'][LANGUAGE_NONE][0]['#default_value']['value']);
       unset($form['field_localist_start_date'][LANGUAGE_NONE][0]['#default_value']['value2']);
     }
+
+    // Only show mini calendar layout if widget type is combo
+    $form['field_localist_minical_layout']['#states'] = array(
+      'visible' => array(
+        ':input[name="field_localist_widget_type[und]"]' => array('value' => 'combo'),
+      ),
+    );
 
     // Hide filter text fields
     $form['field_localist_filters']['#access'] = FALSE;
@@ -420,6 +445,14 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
       unset($entity_form['field_localist_start_date'][LANGUAGE_NONE][0]['#default_value']['value2']);
     }
   }
+
+  // Only show mini calendar layout if widget type is combo
+  $entity_form['field_localist_minical_layout']['#states'] = array(
+    'visible' => array(
+      '.field-name-field-localist-widget-type :input' => array('value' => 'combo'),
+    ),
+  );
+
   // Hide filter text fields
   $entity_form['field_localist_filters']['#access'] = FALSE;
   $entity_form['field_localist_filters_excluded']['#access'] = FALSE;
@@ -504,6 +537,7 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
       }
     }
   }
+  $submitted = !empty($submitted) ? join(',', $submitted) : '';
   $form_state['values']['field_localist_filters'][LANGUAGE_NONE][0]['value'] = join(',', $submitted);
 
   // Do excluded filters
@@ -518,6 +552,7 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
       }
     }
   }
+  $submitted = !empty($submitted) ? join(',', $submitted) : '';
   $form_state['values']['field_localist_filters_excluded'][LANGUAGE_NONE][0]['value'] = join(',', $submitted);
 }
 
@@ -562,5 +597,11 @@ function express_localist_bundle_secure_permissions($role) {
 
   if (isset($permissions[$role])) {
     return $permissions[$role];
+  }
+}
+
+function express_localist_bundle_form_express_block_designer_form_alter(&$form, &$form_state) {
+  if ($form['block_type']['#value'] == 'localist_events') {
+    //$form['block_designer_settings']['style']['#access'] = FALSE;
   }
 }
