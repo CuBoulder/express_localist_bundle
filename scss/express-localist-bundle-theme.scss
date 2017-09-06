@@ -33,16 +33,25 @@ $cugold: #CFB87C;
   }
   .localist_widget_container {
     background: none;
+    ul.lw_event_list {
+      max-width: none;
+    }
     li.lw_event_item {
       background: none;
       border:1px solid rgba(#757575, .25);
       font:inherit;
     }
     .action_button {
+      text-align: right;
       a:link,
       a:visited {
         color:#555;
         //background: $blue;
+        display: inline-block;
+        line-height: 1;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 75%;
       }
     }
   }
