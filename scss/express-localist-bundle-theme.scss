@@ -61,6 +61,18 @@ $cugold: #CFB87C;
     clear: both;
   }
   .localist_minicalendar {
+    max-width: 400px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+
+    .localist_minicalendar_nav,
+    .localist_minicalendar_pager {
+      padding:10px;
+      // background: rgba(#757575, .1);
+      margin-bottom: 10px;
+      font-size: 85%;
+    }
+
     .localist_minicalendar_pager {
       a:link,
       a:visited {
@@ -77,6 +89,7 @@ $cugold: #CFB87C;
       }
     }
     .localist_minicalendar_minicalendar {
+      margin-bottom: 10px;
       background:none;
       border:none;
       th {
