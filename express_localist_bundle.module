@@ -304,7 +304,6 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $values['target_blank'] = $vars['field_localist_new_window'][0]['value'];
     $values['skip_recurring'] = $vars['field_localist_skip_recurring'][0]['value'];
     $values['all_instances'] = $vars['field_localist_all_instances'][0]['value'];
-
     $values['template'] = $vars['field_localist_style'][0]['value'];
 
     // Filters
@@ -350,6 +349,8 @@ function express_localist_bundle_preprocess_entity(&$vars) {
         $configs[] = $key . '=' . $value;
       }
     }
+    // Don't show the types select menu - EVER!
+    $configs[] = 'show_types=0';
 
     // Remove link if title was not enterd/title==url
     if (!empty($vars['content']['field_localist_link'])) {
