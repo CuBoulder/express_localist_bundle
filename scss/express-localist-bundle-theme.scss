@@ -123,3 +123,27 @@ $cugold: #CFB87C;
     font-family: inherit;
   }
 }
+
+/* Template 5 */
+.template-5 {
+  .le-date-wrapper {
+    //color: $cugold;
+
+    .le-date-month {
+      line-height: 1;
+    }
+    .le-date-day {
+      line-height: 1;
+    }
+    @media screen and (min-width:600px) {
+      .le-date-month {
+        font-size:250%;
+      }
+      .le-date-day {
+        font-size:350%;
+      }
+    }
+
+  }
+
+}

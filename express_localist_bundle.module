@@ -237,6 +237,7 @@ function express_localist_bundle_style_options() {
     'express-template-2' => 'Template 2',
     'express-template-3' => 'Template 3',
     'express-template-4' => 'Template 4',
+    'express-template-5' => 'Template 5',
   );
 
   return $options;

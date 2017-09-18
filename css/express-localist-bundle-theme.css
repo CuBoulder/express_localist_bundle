@@ -25,3 +25,9 @@
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today { background: #007bc8; border-bottom: inherit; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today a:link, .localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today a:visited { color: #fff !important; }
 .localist-events .localist-widget-hl .event-card .content p { font-family: inherit; }
+
+/* Template 5 */
+.template-5 .le-date-wrapper .le-date-month { line-height: 1; }
+.template-5 .le-date-wrapper .le-date-day { line-height: 1; }
+@media screen and (min-width: 600px) { .template-5 .le-date-wrapper .le-date-month { font-size: 250%; }
+  .template-5 .le-date-wrapper .le-date-day { font-size: 350%; } }
