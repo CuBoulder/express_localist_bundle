@@ -645,3 +645,14 @@ function express_localist_bundle_form_express_block_designer_form_alter(&$form, 
     //$form['block_designer_settings']['style']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_express_bean_list_groups().
+ * Provided by express_add_content.api.php.
+ */
+function express_localist_bundle_express_bean_list_groups($bundles) {
+
+  $bundles['events']['types'][] = 'Localist Events';
+
+  return $bundles;
+}
