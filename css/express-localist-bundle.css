@@ -1,3 +1,5 @@
+.localist-wrapper > ul, .localist-wrapper > ul > li { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+
 .localist-events ul#lwe { padding-left: 0; }
 .localist-events #lw { background: none; }
 .localist-events .localist_minicalendar_page_heading { font-weight: bold; }
