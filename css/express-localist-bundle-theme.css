@@ -4,6 +4,7 @@
 .localist-events #lw { background: none; }
 .localist-events .lwn, .localist-events .lwd, .localist-events .lwn0, .localist-events .lwl, .localist-events .lwl0 { color: inherit; }
 .localist-events .le-wrapper { border-bottom-color: rgba(117, 117, 117, 0.35); }
+.localist-events .localist-widget-hl .event-title { background: rgba(0, 0, 0, 0.75); }
 .localist-events .localist_widget_container span.lw_event_item_date { background: rgba(0, 0, 0, 0.75); font-weight: bold; }
 .localist-events .localist_widget_container { background: none; }
 .localist-events .localist_widget_container ul.lw_event_list { max-width: none; }
