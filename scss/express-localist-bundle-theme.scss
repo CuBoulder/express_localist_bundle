@@ -1,3 +1,15 @@
+@mixin rgbashadow($x, $y, $blur, $rgb, $transparency) {
+  -webkit-box-shadow: $x $y $blur rgba($rgb, $transparency);
+  -moz-box-shadow:    $x $y $blur rgba($rgb, $transparency);
+  box-shadow:         $x $y $blur rgba($rgb, $transparency);
+}
+
+@mixin shadowtransition {
+  transition: -webkit-box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+  transition: -moz-box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+  transition: box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+}
+
 $blue: #007BC8;
 $cugold: #CFB87C;
 
@@ -122,8 +134,25 @@ $cugold: #CFB87C;
       }
     }
   }
+  .localist-widget-hl .event-card:hover {
+    border-color:inherit;
+  }
+  .localist-widget-hl .event-details {
+    background: rgba(0,0,0,.65);
+  }
   .localist-widget-hl .event-card .content p {
     font-family: inherit;
+  }
+  .localist-widget-hl .event-card .event-short-date {
+    background: $blue;
+  }
+  .localist-widget-hl .event-card {
+    @include rgbashadow(0,0,10px,#000,.10);
+    @include shadowtransition;
+    border:none;
+    &:hover {
+      @include rgbashadow(0,0,20px,#000,.25);
+    }
   }
 }
 
