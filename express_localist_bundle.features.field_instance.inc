@@ -503,6 +503,45 @@ function express_localist_bundle_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'bean-localist_events-field_localist_minical_layout'.
+  $field_instances['bean-localist_events-field_localist_minical_layout'] = array(
+    'bundle' => 'localist_events',
+    'default_value' => array(
+      0 => array(
+        'value' => 'vertical',
+      ),
+    ),
+    'default_value_function' => '',
+    'default_value_php' => '',
+    'deleted' => 0,
+    'description' => 'Choose how the mini calendar is displayed.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 32,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_localist_minical_layout',
+    'label' => 'Mini Calendar Layout',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'bean-localist_events-field_localist_new_window'.
   $field_instances['bean-localist_events-field_localist_new_window'] = array(
     'bundle' => 'localist_events',
@@ -869,7 +908,7 @@ function express_localist_bundle_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -994,6 +1033,7 @@ function express_localist_bundle_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Choose how the mini calendar is displayed.');
   t('Content Must Match');
   t('Date that the widget should start from.');
   t('Days Ahead');
@@ -1007,6 +1047,7 @@ function express_localist_bundle_field_default_field_instances() {
   t('Hide Past Events');
   t('Keywords and Tags');
   t('Link');
+  t('Mini Calendar Layout');
   t('Number of Results');
   t('Number of days in the future to look at (1-365).');
   t('Number of events to return (1-50).');

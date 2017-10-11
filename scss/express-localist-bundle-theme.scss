@@ -70,6 +70,9 @@ $cugold: #CFB87C;
       }
     }
   }
+  .localist_minicalendar_events {
+    flex-grow: 1;
+  }
   .localist_minicalendar_events:after {
     content: "";
     display: table;

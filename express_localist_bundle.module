@@ -323,7 +323,7 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     }
 
     // Mini Calendar Layout
-    $layout = $vars['field_localist_minical_layout'][0]['value'];
+    $layout = !empty($vars['field_localist_minical_layout']) ? $vars['field_localist_minical_layout'][0]['value'] : '';
     $type = $vars['field_localist_widget_type'][0]['value'];
     $localist_classes = array();
     $localist_classes[] = 'localist-' . $type;

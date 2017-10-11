@@ -146,6 +146,7 @@ function express_localist_bundle_field_group_info() {
       5 => 'field_localist_hide_images',
       6 => 'field_localist_hide_times',
       7 => 'field_localist_new_window',
+      8 => 'field_localist_minical_layout',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -383,14 +384,14 @@ function express_localist_bundle_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_localist_filters';
   $field_group->data = array(
-    'label' => 'Keywords and Tags',
+    'label' => 'Filter by Keywords and Tags',
     'weight' => '48',
     'children' => array(
       0 => 'field_localist_tags',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Keywords and Tags',
+      'label' => 'Filter by Keywords and Tags',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -441,10 +442,10 @@ function express_localist_bundle_field_group_info() {
   t('Excluded Content');
   t('Filter by Department');
   t('Filter by Group');
+  t('Filter by Keywords and Tags');
   t('Filter by Place');
   t('Filtering Options');
   t('Filters');
-  t('Keywords and Tags');
   t('Options');
   t('Type');
 

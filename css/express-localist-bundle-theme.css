@@ -11,6 +11,7 @@
 .localist-events .localist_widget_container li.lw_event_item { background: none; border: 1px solid rgba(117, 117, 117, 0.25); font: inherit; }
 .localist-events .localist_widget_container .action_button { text-align: right; }
 .localist-events .localist_widget_container .action_button a:link, .localist-events .localist_widget_container .action_button a:visited { color: #555; display: inline-block; line-height: 1; font-weight: bold; padding: 10px; font-size: 75%; }
+.localist-events .localist_minicalendar_events { flex-grow: 1; }
 .localist-events .localist_minicalendar_events:after { content: ""; display: table; clear: both; }
 .localist-events .localist_minicalendar { max-width: 400px; margin: 0 auto; padding-bottom: 40px; }
 .localist-events .localist_minicalendar .localist_minicalendar_nav, .localist-events .localist_minicalendar .localist_minicalendar_pager { padding: 10px; margin-bottom: 10px; font-size: 85%; }
