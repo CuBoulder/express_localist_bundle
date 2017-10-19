@@ -75,7 +75,7 @@ function express_localist_bundle_places_options() {
     return array();
   }
   else {
-    $end_point .= '/api/2/places';
+    $end_point .= '/api/2/places?pp=100';
   }
   // Get cached options
   if ($cache = express_localist_bundle_api_cache_get($end_point)) {
@@ -84,12 +84,23 @@ function express_localist_bundle_places_options() {
   else {
     $response = drupal_http_request($end_point);
     if ($response->code == '200') {
-      $options = array();
-      $terms = drupal_json_decode($response->data, true);
+      // API results are paginated, we need to figure out
+      // how many pages we need to get first.
+      $response = drupal_json_decode($response->data, true);
+      // Total pages, 100 per page.
+      $pages = $response['page']['total'];
+      $terms['places'] = array();
+      // Loop through pages and add to array.
+      for ($i = 1; $i < ($pages + 1); $i++) {
+        $response = drupal_http_request($end_point . '&page=' . $i);
+        $response = drupal_json_decode($response->data, true);
+        $terms['places'] = array_merge($terms['places'],$response['places']);
+      }
+      // Save to cache
       express_localist_bundle_api_cache_save($end_point, $terms);
     }
   }
-
+  $options = array();
   foreach ($terms['places'] as $term) {
     $value = $term['place']['urlname'];
     $display = $term['place']['display_name'];
@@ -115,7 +126,7 @@ function express_localist_bundle_departments_options() {
     return array();
   }
   else {
-    $end_point .= '/api/2/departments';
+    $end_point .= '/api/2/departments?pp=100';
   }
 
   // Get cached options
@@ -125,12 +136,24 @@ function express_localist_bundle_departments_options() {
   else {
     $response = drupal_http_request($end_point);
     if ($response->code == '200') {
-      $options = array();
-      $terms = drupal_json_decode($response->data, true);
+      // API results are paginated, we need to figure out
+      // how many pages we need to get first.
+      $response = drupal_json_decode($response->data, true);
+      // Total pages, 100 per page.
+      $pages = $response['page']['total'];
+
+      $terms['departments'] = array();
+      // Loop through pages and add to array.
+      for ($i = 1; $i < ($pages + 1); $i++) {
+        $response = drupal_http_request($end_point . '&page=' . $i);
+        $response = drupal_json_decode($response->data, true);
+        $terms['departments'] = array_merge($terms['departments'],$response['departments']);
+      }
+      // Save to cache.
       express_localist_bundle_api_cache_save($end_point, $terms);
     }
   }
-
+  $options = array();
   foreach ($terms['departments'] as $group) {
     $id = $group['department']['urlname'];
     $name = $group['department']['name'];
@@ -148,7 +171,7 @@ function express_localist_bundle_group_options() {
     return array();
   }
   else {
-    $end_point .= '/api/2/groups';
+    $end_point .= '/api/2/groups?pp=100';
   }
 
   // Get cached options
@@ -158,8 +181,20 @@ function express_localist_bundle_group_options() {
   else {
     $response = drupal_http_request($end_point);
     if ($response->code == '200') {
-      $options = array();
-      $terms = drupal_json_decode($response->data, true);
+      // API results are paginated, we need to figure out
+      // how many pages we need to get first.
+      $response = drupal_json_decode($response->data, true);
+      // Total pages, 100 per page.
+      $pages = $response['page']['total'];
+
+      $terms['groups'] = array();
+      // Loop through pages and add to array.
+      for ($i = 1; $i < ($pages + 1); $i++) {
+        $response = drupal_http_request($end_point . '&page=' . $i);
+        $response = drupal_json_decode($response->data, true);
+        $terms['groups'] = array_merge($terms['groups'],$response['groups']);
+      }
+      // Save to cache.
       express_localist_bundle_api_cache_save($end_point, $terms);
     }
   }
