@@ -74,29 +74,6 @@ function express_localist_bundle_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_localist_departments'.
-  $field_bases['field_localist_departments'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_localist_departments',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_departments_options',
-      'allowed_values_php' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_localist_filters'.
   $field_bases['field_localist_filters'] = array(
     'active' => 1,

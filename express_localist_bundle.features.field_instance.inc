@@ -135,40 +135,6 @@ function express_localist_bundle_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-localist_events-field_localist_departments'.
-  $field_instances['bean-localist_events-field_localist_departments'] = array(
-    'bundle' => 'localist_events',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'default_value_php' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 27,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'fences_wrapper' => 'no_wrapper',
-    'field_name' => 'field_localist_departments',
-    'label' => 'Departments',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 66,
-    ),
-  );
-
   // Exported field_instance: 'bean-localist_events-field_localist_filters'.
   $field_instances['bean-localist_events-field_localist_filters'] = array(
     'bundle' => 'localist_events',
@@ -1037,7 +1003,6 @@ function express_localist_bundle_field_default_field_instances() {
   t('Content Must Match');
   t('Date that the widget should start from.');
   t('Days Ahead');
-  t('Departments');
   t('Do not include recurring events.');
   t('Filters');
   t('Groups');
