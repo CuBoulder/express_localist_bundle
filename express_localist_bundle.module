@@ -451,6 +451,8 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
 
     // Get filter options.
     $filters = express_localist_bundle_get_filter_options();
+    // Sort filters alphabetically.
+    ksort($filters);
     foreach ($filters as $key => $filter) {
       $options = array();
       // Sort everything alphabetically
