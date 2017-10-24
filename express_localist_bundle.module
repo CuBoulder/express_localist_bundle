@@ -67,6 +67,9 @@ function express_localist_must_configure() {
   drupal_set_message(t('The Localist URL has not been !configured.', array('!configured' => l('configured', 'admin/config/system/express-localist'))), 'error', FALSE);
 }
 
+/**
+ * Provide places options to form.
+ */
 function express_localist_bundle_places_options() {
   $options = array();
   $end_point = variable_get('express_localist_url', NULL);
@@ -106,9 +109,13 @@ function express_localist_bundle_places_options() {
     $display = $term['place']['display_name'];
     $options[$value] = $display;
   }
+  asort($options);
   return $options;
 }
 
+/**
+ * Localist minical field options.
+ */
 function express_localist_bundle_minical_layout_options() {
   $options = array(
     'vertical' => 'Vertical',
@@ -118,51 +125,9 @@ function express_localist_bundle_minical_layout_options() {
   return $options;
 }
 
-function express_localist_bundle_departments_options() {
-  $groups = array();
-  $end_point = variable_get('express_localist_url', NULL);
-  if (!$end_point) {
-    express_localist_must_configure();
-    return array();
-  }
-  else {
-    $end_point .= '/api/2/departments?pp=100';
-  }
-
-  // Get cached options
-  if ($cache = express_localist_bundle_api_cache_get($end_point)) {
-    $terms = $cache;
-  }
-  else {
-    $response = drupal_http_request($end_point);
-    if ($response->code == '200') {
-      // API results are paginated, we need to figure out
-      // how many pages we need to get first.
-      $response = drupal_json_decode($response->data, true);
-      // Total pages, 100 per page.
-      $pages = $response['page']['total'];
-
-      $terms['departments'] = array();
-      // Loop through pages and add to array.
-      for ($i = 1; $i < ($pages + 1); $i++) {
-        $response = drupal_http_request($end_point . '&page=' . $i);
-        $response = drupal_json_decode($response->data, true);
-        $terms['departments'] = array_merge($terms['departments'],$response['departments']);
-      }
-      // Save to cache.
-      express_localist_bundle_api_cache_save($end_point, $terms);
-    }
-  }
-  $options = array();
-  foreach ($terms['departments'] as $group) {
-    $id = $group['department']['urlname'];
-    $name = $group['department']['name'];
-    $groups[$id] = $name;
-  }
-  arsort($groups);
-  return $groups;
-}
-
+/**
+ * Provide options for group field.
+ */
 function express_localist_bundle_group_options() {
   $groups = array();
   $end_point = variable_get('express_localist_url', NULL);
@@ -203,10 +168,13 @@ function express_localist_bundle_group_options() {
     $name = $group['group']['name'];
     $groups[$id] = $name;
   }
-  arsort($groups);
+  asort($groups);
   return $groups;
 }
 
+/**
+ * Get filter options.
+ */
 function express_localist_bundle_get_filter_options() {
   $options = array();
   $end_point = variable_get('express_localist_url', NULL);
@@ -243,6 +211,9 @@ function express_localist_bundle_get_filter_options() {
   return $options;
 }
 
+/**
+ * Match content options.
+ */
 function express_localist_bundle_content_match_options() {
   $options = array(
     'default' => 'At least one place, group, keyword or tag, and one filter item',
@@ -254,6 +225,9 @@ function express_localist_bundle_content_match_options() {
   return $options;
 }
 
+/**
+ * WIdget type options.
+ */
 function express_localist_bundle_widget_options() {
   $options = array(
     'view' => 'List',
@@ -263,6 +237,9 @@ function express_localist_bundle_widget_options() {
   return $options;
 }
 
+/**
+ * Widget style options.
+ */
 function express_localist_bundle_style_options() {
   $options = array(
     'modern' => 'Modern',
