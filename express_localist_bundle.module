@@ -216,10 +216,10 @@ function express_localist_bundle_get_filter_options() {
  */
 function express_localist_bundle_content_match_options() {
   $options = array(
-    'default' => 'At least one place, group, keyword or tag, and one filter item',
     'any' => 'Any place, group, keyword, tag, or filter item',
-    'all' => 'At least one place and group, and all keywords, tags, and filter items',
+    'default' => 'At least one place, group, keyword or tag, and one filter item',
     'or' => 'Any place or group, and at least one keyword or tag, and one filter item',
+    'all' => 'At least one place and group, and all keywords, tags, and filter items',
   );
 
   return $options;

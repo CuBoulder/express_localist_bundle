@@ -57,11 +57,11 @@ function express_localist_bundle_field_default_field_instances() {
     'bundle' => 'localist_events',
     'default_value' => array(
       0 => array(
-        'value' => 'default',
+        'value' => 'any',
       ),
     ),
     'default_value_function' => '',
-    'default_value_php' => '',
+    'default_value_php' => FALSE,
     'deleted' => 0,
     'description' => '',
     'display' => array(

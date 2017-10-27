@@ -53,7 +53,7 @@ function express_localist_bundle_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(),
       'allowed_values_function' => 'express_localist_bundle_content_match_options',
-      'allowed_values_php' => '',
+      'allowed_values_php' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
