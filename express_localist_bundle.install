@@ -19,6 +19,8 @@ function express_localist_bundle_install() {
   variable_set('express_localist_filters', array(
     'event_types' => 'event_types',
     'event_target_audience' => 'event_target_audience',
-    'event_category' => 'event_category',
+    'event_college_school_unit' => 'event_college_school_unit',
+    'event_academic_calendar' => 'event_academic_calendar',
+    'event_interests' => 'event_interests',
   ));
 }
