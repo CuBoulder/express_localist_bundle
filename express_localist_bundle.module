@@ -13,7 +13,7 @@ function express_localist_bundle_menu() {
     'description' => 'Set localist url and available filters.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('express_localist_bundle_config_form'),
-    'access callback' => TRUE,
+    'access arguments' => array('administer localist settings'),
     'file' => 'express_localist_bundle.admin.inc',
   );
   return $items;
@@ -609,6 +609,17 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
   $submitted = !empty($submitted) ? join(',', $submitted) : '';
   $form_state['values']['field_localist_filters_excluded'][LANGUAGE_NONE][0]['value'] = $submitted;
 }
+/**
+ * Implements hook_permission().
+ */
+function express_localist_bundle_permission() {
+  return array(
+    'administer localist settings' => array(
+      'title' => 'Administer Localist Settings',
+      'description' => 'Configure the settings for the Localist Calendar',
+    ),
+  );
+}
 
 /**
  * Implements hook_secure_permissions().
@@ -639,7 +650,7 @@ function express_localist_bundle_secure_permissions($role) {
       'delete any localist_events bean',
       'edit any localist_events bean',
       'view any localist_events bean',
-      'administer block wrapper',
+      'administer localist settings',
     ),
     'site_owner' => array(
       'create any localist_events bean',
