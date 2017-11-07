@@ -482,7 +482,6 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
  * Add States to localist_events form when used in inline entity form.
  */
 function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
-
   if ($entity_form['#entity']->type == 'localist_events') {
     // Check to see if Localist url is configured.
     $end_point = variable_get('express_localist_url', NULL);
@@ -498,80 +497,81 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
       unset($entity_form['field_localist_start_date'][LANGUAGE_NONE][0]['#default_value']['value']);
       unset($entity_form['field_localist_start_date'][LANGUAGE_NONE][0]['#default_value']['value2']);
     }
-  }
 
-  // Only show mini calendar layout if widget type is combo
-  $entity_form['field_localist_minical_layout']['#states'] = array(
-    'visible' => array(
-      '.field-name-field-localist-widget-type :input' => array('value' => 'combo'),
-    ),
-  );
-
-  // Hide filter text fields
-  $entity_form['field_localist_filters']['#access'] = FALSE;
-  $entity_form['field_localist_filters_excluded']['#access'] = FALSE;
-
-  // Get filter values as an array.
-  $saved_options = array();
-
-  $saved_filters = explode(',', $entity_form['field_localist_filters'][LANGUAGE_NONE][0]['value']['#default_value']);
-  // Build array of keys.
-  foreach ($saved_filters as $filter) {
-    $saved_options['included'][$filter] = $filter;
-  }
-
-  $saved_filters = explode(',', $entity_form['field_localist_filters_excluded'][LANGUAGE_NONE][0]['value']['#default_value']);
-  // Build array of keys.
-  foreach ($saved_filters as $filter) {
-    $saved_options['excluded'][$filter] = $filter;
-  }
-
-  // Get filter options.
-  $filters = express_localist_bundle_get_filter_options();
-  foreach ($filters as $key => $filter) {
-    $options = array();
-    // Sort everything alphabetically
-    usort($filter, function($a, $b) {
-      return strcmp($a['name'], $b['name']);
-    });
-    // Build tree
-    $tree = _express_localist_bundle_tree($filter);
-    $options = _express_localist_bundle_tree_options($tree);
-    // Make fieldset.
-    $entity_form['fieldset_' . $key] = array(
-      '#type' => 'fieldset',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#title' => 'Filter by ' . ucfirst(substr(str_replace('_', ' ', $key), 6)),
+    // Only show mini calendar layout if widget type is combo
+    $entity_form['field_localist_minical_layout']['#states'] = array(
+      'visible' => array(
+        '.field-name-field-localist-widget-type :input' => array('value' => 'combo'),
+      ),
     );
-    // Make form element.
-    $entity_form['fieldset_' . $key][$key] = array(
-      '#type' => 'checkboxes',
-      '#title' => ucfirst(substr(str_replace('_', ' ', $key), 6)),
-      '#options' => $options,
-      '#default_value' => $saved_options['included'],
-    );
-    // Make fieldset.
-    $entity_form['fieldset_' . $key . '_excluded'] = array(
-      '#type' => 'fieldset',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#title' => 'Exclude by ' . ucfirst(substr(str_replace('_', ' ', $key), 6)),
-    );
-    // Make form element.
-    $entity_form['fieldset_' . $key . '_excluded'][$key . '_excluded'] = array(
-      '#type' => 'checkboxes',
-      '#title' => ucfirst(substr(str_replace('_', ' ', $key), 6)),
-      '#options' => $options,
-      '#default_value' => $saved_options['excluded'],
-    );
-    // Add form element to filter field group.
-    $entity_form['#group_children']['fieldset_' . $key] = 'group_localist_filters';
-    $entity_form['#group_children']['fieldset_' . $key . '_excluded'] = 'group_localist_excluded';
 
+    // Hide filter text fields
+    $entity_form['field_localist_filters']['#access'] = FALSE;
+    $entity_form['field_localist_filters_excluded']['#access'] = FALSE;
+
+    // Get filter values as an array.
+    $saved_options = array();
+
+    $saved_filters = explode(',', $entity_form['field_localist_filters'][LANGUAGE_NONE][0]['value']['#default_value']);
+    // Build array of keys.
+    foreach ($saved_filters as $filter) {
+      $saved_options['included'][$filter] = $filter;
+    }
+
+    $saved_filters = explode(',', $entity_form['field_localist_filters_excluded'][LANGUAGE_NONE][0]['value']['#default_value']);
+    // Build array of keys.
+    foreach ($saved_filters as $filter) {
+      $saved_options['excluded'][$filter] = $filter;
+    }
+
+    // Get filter options.
+    $filters = express_localist_bundle_get_filter_options();
+    foreach ($filters as $key => $filter) {
+      $options = array();
+      // Sort everything alphabetically
+      usort($filter, function($a, $b) {
+        return strcmp($a['name'], $b['name']);
+      });
+      // Build tree
+      $tree = _express_localist_bundle_tree($filter);
+      $options = _express_localist_bundle_tree_options($tree);
+      // Make fieldset.
+      $entity_form['fieldset_' . $key] = array(
+        '#type' => 'fieldset',
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#title' => 'Filter by ' . ucfirst(substr(str_replace('_', ' ', $key), 6)),
+      );
+      // Make form element.
+      $entity_form['fieldset_' . $key][$key] = array(
+        '#type' => 'checkboxes',
+        '#title' => ucfirst(substr(str_replace('_', ' ', $key), 6)),
+        '#options' => $options,
+        '#default_value' => $saved_options['included'],
+      );
+      // Make fieldset.
+      $entity_form['fieldset_' . $key . '_excluded'] = array(
+        '#type' => 'fieldset',
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#title' => 'Exclude by ' . ucfirst(substr(str_replace('_', ' ', $key), 6)),
+      );
+      // Make form element.
+      $entity_form['fieldset_' . $key . '_excluded'][$key . '_excluded'] = array(
+        '#type' => 'checkboxes',
+        '#title' => ucfirst(substr(str_replace('_', ' ', $key), 6)),
+        '#options' => $options,
+        '#default_value' => $saved_options['excluded'],
+      );
+      // Add form element to filter field group.
+      $entity_form['#group_children']['fieldset_' . $key] = 'group_localist_filters';
+      $entity_form['#group_children']['fieldset_' . $key . '_excluded'] = 'group_localist_excluded';
+
+    }
+    // Add submit function to take filter options and save them.
+    $entity_form['#submit'][] = 'express_localist_bundle_save_filters';
+    
   }
-  // Add submit function to take filter options and save them.
-  $entity_form['#submit'][] = 'express_localist_bundle_save_filters';
 }
 
 /**
