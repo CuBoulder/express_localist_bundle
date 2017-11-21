@@ -324,7 +324,14 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $values['types'] = !empty($vars['field_localist_filters']) ? $vars['field_localist_filters'][0]['value'] : 0;
     $values['exclude_types'] = !empty($vars['field_localist_filters_departments']) ? $vars['field_localist_filters_departments'][0]['value'] : 0;
     $values['departments'] = !empty($vars['field_localist_departments']) ? $vars['field_localist_departments'][0]['value'] : 0;
-    $values['groups'] = !empty($vars['field_localist_groups']) ? $vars['field_localist_groups'][0]['value'] : 0;
+
+    // Combine groups
+    $groups = array();
+    foreach ($vars['field_localist_groups'] as $group) {
+      $groups[] = $group['value'];
+    }
+
+    $values['groups'] = !empty($vars['field_localist_groups']) ? join(',', $groups) : 0;
     $values['tags'] = !empty($vars['field_localist_tags']) ? $vars['field_localist_tags'][0]['value'] : 0;
 
     // Start Date
@@ -393,7 +400,7 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
     }
 
     // Add default link url
-    $form['field_localist_link'][LANGUAGE_NONE][0]['#default_value']['url'] = $end_point;
+    //$form['field_localist_link'][LANGUAGE_NONE][0]['#default_value']['url'] = $end_point;
 
     // Delete start date default value if this is a new bean.
     if ($form['bean']['#value']->bid == NULL) {
@@ -490,7 +497,7 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
     }
 
     // Add default link url
-    $entity_form['field_localist_link'][LANGUAGE_NONE][0]['#default_value']['url'] = $end_point;
+    //$entity_form['field_localist_link'][LANGUAGE_NONE][0]['#default_value']['url'] = $end_point;
 
     // Delete start date default value if this is a new bean.
     if ($entity_form['#entity']->bid == NULL) {
@@ -570,7 +577,7 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
     }
     // Add submit function to take filter options and save them.
     $entity_form['#submit'][] = 'express_localist_bundle_save_filters';
-    
+
   }
 }
 
