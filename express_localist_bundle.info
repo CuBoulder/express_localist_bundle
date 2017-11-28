@@ -78,3 +78,5 @@ features[field_instance][] = bean-localist_events-field_localist_style
 features[field_instance][] = bean-localist_events-field_localist_tags
 features[field_instance][] = bean-localist_events-field_localist_truncate_desc
 features[field_instance][] = bean-localist_events-field_localist_widget_type
+
+scripts[] = js/switch_event_url.js
