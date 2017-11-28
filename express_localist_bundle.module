@@ -307,7 +307,7 @@ function express_localist_bundle_preprocess_entity(&$vars) {
 
     $values['picks'] = $vars['field_localist_show_featured'][0]['value'];
     $values['sponsored'] = $vars['field_localist_show_sponsored'][0]['value'];
-    $values['content_match'] = $vars['field_localist_content_match'][0]['value'];
+    $values['match'] = $vars['field_localist_content_match'][0]['value'];
     $values['hide_past'] = $vars['field_localist_hide_past_events'][0]['value'];
     $values['hidedesc'] = $vars['field_localist_hide_descriptions'][0]['value'];
     $values['expand_descriptions'] = $vars['field_localist_truncate_desc'][0]['value'];
