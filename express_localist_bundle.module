@@ -319,6 +319,13 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $values['all_instances'] = $vars['field_localist_all_instances'][0]['value'];
     $values['template'] = $vars['field_localist_style'][0]['value'];
 
+    // Places
+    $places = array();
+    foreach ($vars['field_localist_places'] as $place) {
+      $places[] = $place['value'];
+    }
+    $values['venues'] = !empty($vars['field_localist_places']) ? join(',', $places) : 0;
+
     // Filters
 
     $values['types'] = !empty($vars['field_localist_filters']) ? $vars['field_localist_filters'][0]['value'] : 0;
