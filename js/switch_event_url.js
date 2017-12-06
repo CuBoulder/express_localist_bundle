@@ -13,7 +13,7 @@
       var tries = 0;
       var elementLoaded = setInterval(function() {
         tries++;
-        if($(".localist_widget_wrapper").length > 0){
+        if($(".localist_widget_wrapper, .localist-wrapper").length > 0){
           clearInterval(elementLoaded);
           // Swap links.
           localistLinkSwapper();
