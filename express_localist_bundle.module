@@ -389,6 +389,8 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     $vars['localist_classes'] = join(' ', $localist_classes);
     $vars['widget_url'] = $end_point . '/widget/' . $type . '?' . join('&', $configs);
     $vars['widget_configs'] = $configs;
+
+    drupal_add_js(drupal_get_path('module', 'express_localist_bundle') . '/js/switch_event_url.js');
   }
 }
 
@@ -694,4 +696,11 @@ function express_localist_bundle_express_bean_list_groups($bundles) {
   $bundles['events']['types'][] = 'Localist Events';
 
   return $bundles;
+}
+
+function express_localist_bundle_init() {
+  $localist_bypass_urls = variable_get('localist_bypass_urls', array(
+    'cupresents.org',
+  ));
+  drupal_add_js(array('localist_bypass_urls' => $localist_bypass_urls), 'setting');
 }
