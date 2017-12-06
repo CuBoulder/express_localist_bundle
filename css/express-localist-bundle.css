@@ -8,3 +8,19 @@ table.localist_minicalendar_minicalendar caption { border: 0; height: 1px; overf
 
 @media screen and (min-width: 768px) { .localist-combo.localist-layout-horizontal { margin: 0 -20px; display: flex; flex-direction: row-reverse; }
   .localist-combo.localist-layout-horizontal > div { padding: 0 20px; } }
+/* Shortcode Styles */
+.localist-event-shortcode-wrapper { border: 1px solid #e7e7e7; padding: 20px; margin-bottom: 20px; overflow: hidden; }
+.localist-event-shortcode-wrapper .localist-event-shortcode-content { overflow: hidden; }
+@media screen and (min-width: 768px) { .localist-event-shortcode-wrapper .localist-event-shortcode-content { min-width: 180px; } }
+.localist-event-shortcode-wrapper .localist-event-shortcode-title { font-weight: bold; font-size: 120%; margin-bottom: 10px; }
+.localist-event-shortcode-wrapper .localist-events-shortcode-dates { margin-bottom: 10px; font-weight: bold; font-size: 75%; }
+.localist-event-shortcode-wrapper .localist-event-shortcode-description { font-size: 85%; margin-bottom: 10px; }
+.localist-event-shortcode-wrapper .localist-event-shortcode-description > p:last-child { margin-bottom: 0; }
+.localist-event-shortcode-wrapper img.localist-event-shortcode-image { width: 80px; height: auto; float: left; margin: 0 20px 0 0; }
+@media screen and (min-width: 768px) { .localist-event-shortcode-wrapper img.localist-event-shortcode-image { width: 120px; } }
+@media screen and (min-width: 960px) { .localist-event-shortcode-wrapper img.localist-event-shortcode-image { width: 200px; } }
+.localist-event-shortcode-wrapper .localist-event-shortcode-hero { height: 180px; background-position: center center; background-size: cover; margin-bottom: 10px; }
+@media screen and (min-width: 768px) { .localist-event-shortcode-wrapper .localist-event-shortcode-hero { height: 240px; } }
+@media screen and (min-width: 960px) { .localist-event-shortcode-wrapper .localist-event-shortcode-hero { height: 320px; } }
+
+.localist-event-shortcode-view { font-size: 85%; }

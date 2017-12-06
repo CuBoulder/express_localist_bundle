@@ -6,6 +6,7 @@
 function express_localist_bundle_schema() {
   $schema = array();
   $schema['express_localist_bundle'] = drupal_get_schema_unprocessed('system', 'cache');
+  $schema['express_localist_event'] = drupal_get_schema_unprocessed('system', 'cache');
   return $schema;
 }
 

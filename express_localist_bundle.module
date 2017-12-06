@@ -37,7 +37,7 @@ function express_localist_bundle_theme_registry_alter(&$theme_registry) {
 * Implements hook_flush_caches().
 */
 function express_localist_bundle_flush_caches() {
-  return array('express_localist_bundle');
+  return array('express_localist_bundle', 'express_localist_event');
 }
 
 /**
@@ -691,9 +691,178 @@ function express_localist_bundle_express_bean_list_groups($bundles) {
   return $bundles;
 }
 
+/**
+ * Add url switcher js
+ */
 function express_localist_bundle_init() {
   $localist_bypass_urls = variable_get('localist_bypass_urls', array(
     'cupresents.org',
   ));
   drupal_add_js(array('localist_bypass_urls' => $localist_bypass_urls), 'setting');
+}
+
+/**
+ * Implements hook_shortcode_info().
+ *
+ * Add shortcode for embedding a localist event.
+ */
+function express_localist_bundle_shortcode_info() {
+  $shortcodes = array();
+  $shortcodes['localist-event'] = array(
+    'title' => t('Localist Event'),
+    'description' => t('Embed a localist event'),
+    'process callback' => 'express_localist_bundle_shortcode_localist_event',
+    'tips callback' => 'express_localist_bundle_shortcode_localist_event_tips',
+    'default settings' => array(),
+  );
+  return $shortcodes;
+}
+
+/**
+ * Process callback for rendering localist event shortcode.
+ */
+function express_localist_bundle_shortcode_localist_event($attrs, $content = NULL) {
+  extract(shortcode_attrs(array(
+    'style' => 'normal',
+    'description' => 'short',
+  ), $attrs));
+  $end_point = variable_get('express_localist_url', NULL);
+  $api = $end_point . '/api/2/events/';
+  $cid = check_plain($content);
+  $data = array();
+
+  // Check to see if this has been cached first.
+  if ($cache = cache_get($cid, 'express_localist_event')) {
+    $data = drupal_json_decode($cache->data, true);
+  }
+  else {
+    // Get event id.
+    $tags = get_meta_tags(check_plain($content));
+    // If there is an event id, get the event date from the API.
+    if (!empty($tags['localist-event-id'])) {
+      $response = drupal_http_request($api . '/' . $tags['localist-event-id']);
+      if ($response->code == '200') {
+        // Cache and save for 1 hour.
+        $data = drupal_json_decode($response->data, true);
+        cache_set($cid, $response->data, 'express_localist_event', time() + 60 * 60);
+      }
+      else {
+        // Didn't work, so return the original content.
+        return $content;
+      }
+    }
+    else {
+      // Didn't work, so return the original content.
+      return $content;
+    }
+  }
+  // If we have data, render the event.
+  if (!empty($data)) {
+    // Get dates into a format we can use.
+    $data['event']['dates'][] = strtotime($data['event']['first_date']);
+    if ($data['event']['last_date'] != $data['event']['first_date']) {
+      $data['event']['dates'][] = strtotime($data['event']['last_date']);
+    }
+    // Format dates.
+    $data['event']['formatted_dates'] = array_map('express_localist_bundle_shortcode_formatted_dates', $data['event']['dates']);
+
+    // Create a truncated description - 50 words long.
+    $data['event']['description_short'] = express_localist_bundle_shortcode_truncate($data['event']['description_text'], 50);
+
+    if ($description == 'full') {
+      $data['event']['event_description'] = $data['event']['description'];
+    }
+    else {
+      $data['event']['event_description'] = $data['event']['description_short'];
+    }
+
+    // Check to see if any urls should be bypassed.
+    $localist_bypass_urls = variable_get('localist_bypass_urls', array(
+      'cupresents.org',
+    ));
+    foreach ($localist_bypass_urls as $url) {
+      $link = $data['event']['url'];
+      if (strpos($link, $url) !== false) {
+        $data['event']['event_url'] = $data['event']['url'];
+      }
+    }
+    if (empty($data['event']['event_url'])) {
+      $data['event']['event_url'] = $data['event']['localist_url'];
+    }
+
+    // Add the cover image style.
+    $data['event']['photo_cover_url'] = str_replace('huge', 'cover', $data['event']['photo_url']);
+
+    // Theme/render the event.
+    if ($style == 'hero') {
+      $event = theme('localist_event_shortcode_hero', $data['event']);
+    }
+    else {
+      $event = theme('localist_event_shortcode', $data['event']);
+    }
+
+
+    return $event;
+  }
+}
+
+/**
+ * Tips callback.
+ */
+function express_localist_bundle_shortcode_localist_event_tips() {
+  $output = '[localist-event]URL to Localist Event[/localist-event]';
+  return $output;
+}
+
+/**
+ * Format dates.
+ */
+function express_localist_bundle_shortcode_formatted_dates($date) {
+  return date('n/j/Y', $date);
+}
+
+/**
+ * Truncate description.
+ */
+function express_localist_bundle_shortcode_truncate($text, $limit, $ellipsis = '...') {
+    $words = preg_split("/[\n\r\t ]+/", $text, $limit + 1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
+    if (count($words) > $limit) {
+        end($words); //ignore last element since it contains the rest of the string
+        $last_word = prev($words);
+
+        $text =  substr($text, 0, $last_word[1] + strlen($last_word[0])) . $ellipsis;
+    }
+    return $text;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Adds theme functions and template files for editor notes.
+ */
+function express_localist_bundle_theme(&$existing, $type, $theme, $path) {
+  $registry = array();
+  $template_dir = drupal_get_path('module', 'express_localist_bundle') . '/templates';
+  $registry['localist_event_shortcode'] = array(
+    'template' => 'localist-event-shortcode',
+    'path' => $template_dir,
+  );
+  $registry['localist_event_shortcode_hero'] = array(
+    'template' => 'localist-event-shortcode-hero',
+    'path' => $template_dir,
+  );
+
+  return $registry;
+}
+
+/**
+ * Implements hook_filter_info_alter().
+ */
+function express_localist_bundle_filter_info_alter(&$info) {
+  // Load the wysiwyg text format.
+  $format = filter_format_load('wysiwyg');
+  // Get the filters on the wysiwyg text format
+  $filters = filter_list_format($format->format);
+  // Enable localist-event shortcode.
+  $filters['shortcode']->settings['localist-event'] = 1;
 }
