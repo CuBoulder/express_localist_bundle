@@ -7,25 +7,42 @@
   Drupal.behaviors.swapLocalistURLs = {
     attach: function (context) {
 
+
+
       // Wait for Localist HTML to render.
-      var elementLoaded = setTimeout(function() {
-        localistLinkSwapper();
+      var tries = 0;
+      var elementLoaded = setInterval(function() {
+        tries++;
+        if($(".localist_widget_wrapper").length > 0){
+          clearInterval(elementLoaded);
+          // Swap links.
+          localistLinkSwapper();
+        }
+        else if (tries == 5) {
+          clearInterval(elementLoaded);
+        }
       },1000);
 
       function localistLinkSwapper() {
+        // Get urls to match for swapping
+        var bypassURLs = Drupal.settings.localist_bypass_urls;
         // Grab all event IDs from rendered output.
         $('li.le-event').each(function() {
+          var eventItem = $(this);
           var eventUrl = $(this).data('website-url');
           // Find and replace all event links.
-          if (eventUrl.includes('cupresents.org')) {
-            // Image URL.
-            $('.le-photo a, a.le-photo', this).attr('href', eventUrl);
+          // Step through bypass options
+          $(bypassURLs).each(function(key, value){
+            if (eventUrl.includes(value)) {
+              // Image URL.
+              $('.le-photo a, a.le-photo', eventItem).attr('href', eventUrl);
+              // Details URL.
+              $('a.view-event-details', eventItem).attr('href', eventUrl);
+              // Title URL.
+              $('.le-event-title a, a.le-event-title', eventItem).attr('href', eventUrl);
+            }
+          });
 
-            $('a.view-event-details', this).attr('href', eventUrl);
-
-            // Title URL.
-            $('.le-event-title a, a.le-event-title', this).attr('href', eventUrl);
-          }
         });
       }
     }
