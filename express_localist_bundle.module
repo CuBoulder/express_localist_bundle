@@ -692,8 +692,8 @@ function express_localist_bundle_express_bean_list_groups($bundles) {
 }
 
 function express_localist_bundle_init() {
-  $localist_bypass_urls = array(
+  $localist_bypass_urls = variable_get('localist_bypass_urls', array(
     'cupresents.org',
-  );
+  ));
   drupal_add_js(array('localist_bypass_urls' => $localist_bypass_urls), 'setting');
 }
