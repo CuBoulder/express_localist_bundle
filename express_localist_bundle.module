@@ -747,13 +747,13 @@ function express_localist_bundle_shortcode_localist_event($attrs, $content = NUL
         cache_set($cid, $response->data, 'express_localist_event', time() + 60 * 60);
       }
       else {
-        // Didn't work, so return the original content.
-        return $content;
+        // Didn't work, so return the original content in a comment.
+        return '<!-- ' . $content . ' is not a valid url for a localist event -->';
       }
     }
     else {
-      // Didn't work, so return the original content.
-      return $content;
+      // Didn't work, so return the original content in a comment.
+      return '<!-- ' . $content . ' is not a valid url for a localist event -->';
     }
   }
   // If we have data, render the event.
@@ -767,7 +767,7 @@ function express_localist_bundle_shortcode_localist_event($attrs, $content = NUL
     $data['event']['formatted_dates'] = array_map('express_localist_bundle_shortcode_formatted_dates', $data['event']['dates']);
 
     // Create a truncated description - 50 words long.
-    $data['event']['description_short'] = express_localist_bundle_shortcode_truncate($data['event']['description_text'], 50);
+    $data['event']['description_short'] = express_localist_bundle_shortcode_truncate($data['event']['description_text'], 25);
 
     if ($description == 'full') {
       $data['event']['event_description'] = $data['event']['description'];
