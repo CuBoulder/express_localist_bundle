@@ -329,8 +329,7 @@ function express_localist_bundle_preprocess_entity(&$vars) {
     // Filters
 
     $values['types'] = !empty($vars['field_localist_filters']) ? $vars['field_localist_filters'][0]['value'] : 0;
-    $values['exclude_types'] = !empty($vars['field_localist_filters_departments']) ? $vars['field_localist_filters_departments'][0]['value'] : 0;
-    $values['departments'] = !empty($vars['field_localist_departments']) ? $vars['field_localist_departments'][0]['value'] : 0;
+    $values['exclude_types'] = !empty($vars['field_localist_filters_excluded']) ? $vars['field_localist_filters_excluded'][0]['value'] : 0;
 
     // Combine groups
     $groups = array();
@@ -614,8 +613,8 @@ function express_localist_bundle_save_filters(&$form, &$form_state) {
   $submitted = array();
   foreach ($filters as $key => $filter) {
     if ($key == $filter) {
-      if (!empty($form_state['values'][$key])) {
-        $new_values = array_filter($form_state['values'][$key]);
+      if (!empty($form_state['values'][$key . '_excluded'])) {
+        $new_values = array_filter($form_state['values'][$key . '_excluded']);
         if (!empty($new_values)) {
           $submitted = $submitted + array_filter($form_state['values'][$key . '_excluded']);
         }
