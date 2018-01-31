@@ -321,8 +321,10 @@ function express_localist_bundle_preprocess_entity(&$vars) {
 
     // Places
     $places = array();
-    foreach ($vars['field_localist_places'] as $place) {
-      $places[] = $place['value'];
+    if (!empty($vars['field_localist_places'])) {
+      foreach ($vars['field_localist_places'] as $place) {
+        $places[] = $place['value'];
+      }
     }
     $values['venues'] = !empty($vars['field_localist_places']) ? join(',', $places) : 0;
 
@@ -333,10 +335,11 @@ function express_localist_bundle_preprocess_entity(&$vars) {
 
     // Combine groups
     $groups = array();
-    foreach ($vars['field_localist_groups'] as $group) {
-      $groups[] = $group['value'];
+    if (!empty($vars['field_localist_groups'])) {
+      foreach ($vars['field_localist_groups'] as $group) {
+        $groups[] = $group['value'];
+      }
     }
-
     $values['groups'] = !empty($vars['field_localist_groups']) ? join(',', $groups) : 0;
     $values['tags'] = !empty($vars['field_localist_tags']) ? $vars['field_localist_tags'][0]['value'] : 0;
 
