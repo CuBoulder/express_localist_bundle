@@ -11,5 +11,5 @@
     </div>
   <?php endif; ?>
 <?php else: ?>
-<!-- localist disbaled -->
+Event feed temporarily disbled.
 <?php endif; ?>
