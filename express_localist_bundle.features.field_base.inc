@@ -128,7 +128,6 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_group_options',
       'allowed_values_php' => FALSE,
     ),
     'translatable' => 0,
@@ -333,7 +332,6 @@ function express_localist_bundle_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(),
-      'allowed_values_function' => 'express_localist_bundle_places_options',
       'allowed_values_php' => '',
     ),
     'translatable' => 0,
