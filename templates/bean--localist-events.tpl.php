@@ -1,4 +1,4 @@
-<?php if (variable_get('express_localist_enabled', TRUE): ?>
+<?php if (variable_get('express_localist_enabled', TRUE)): ?>
   <div class="localist-events <?php print $localist_classes; ?>">
     <script type="text/javascript"
   src="<?php print $widget_url; ?>"></script>
