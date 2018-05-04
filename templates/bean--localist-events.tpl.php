@@ -10,4 +10,6 @@
       <?php print render($content['field_localist_link']); ?>
     </div>
   <?php endif; ?>
+<?php else: ?>
+<!-- localist disbaled -->
 <?php endif; ?>
