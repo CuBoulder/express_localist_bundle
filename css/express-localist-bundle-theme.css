@@ -15,21 +15,21 @@
 .localist-events .localist_minicalendar_events:after { content: ""; display: table; clear: both; }
 .localist-events .localist_minicalendar { max-width: 400px; margin: 0 auto; padding-bottom: 40px; }
 .localist-events .localist_minicalendar .localist_minicalendar_nav, .localist-events .localist_minicalendar .localist_minicalendar_pager { padding: 10px; margin-bottom: 10px; font-size: 85%; }
-.localist-events .localist_minicalendar .localist_minicalendar_pager a:link, .localist-events .localist_minicalendar .localist_minicalendar_pager a:visited { color: #fff !important; background-color: #007bc8; }
+.localist-events .localist_minicalendar .localist_minicalendar_pager a:link, .localist-events .localist_minicalendar .localist_minicalendar_pager a:visited { color: #fff !important; background-color: #0277BD; }
 .localist-events .localist_minicalendar .localist_minicalendar_pager a:hover { background-color: #444; }
 .localist-events .localist_minicalendar .localist_minicalendar_pager a.disabled:link, .localist-events .localist_minicalendar .localist_minicalendar_pager a.disabled:visited { color: #999 !important; background-color: #ddd; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar { margin-bottom: 10px; background: none; border: none; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar th { background: none; color: inherit; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar td { background-color: #f2f2f2; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar td:hover { background: #e0e0e0; }
-.localist-events .localist_minicalendar .localist_minicalendar_minicalendar td a { color: #005c95 !important; }
+.localist-events .localist_minicalendar .localist_minicalendar_minicalendar td a { color: #01578b !important; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar td a:hover { background: none; font-weight: inherit; }
-.localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today { background: #007bc8; border-bottom: inherit; }
+.localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today { background: #0277BD; border-bottom: inherit; }
 .localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today a:link, .localist-events .localist_minicalendar .localist_minicalendar_minicalendar .localist_minicalendar_today a:visited { color: #fff !important; }
 .localist-events .localist-widget-hl .event-card:hover { border-color: inherit; }
 .localist-events .localist-widget-hl .event-details { background: rgba(0, 0, 0, 0.65); }
 .localist-events .localist-widget-hl .event-card .content p { font-family: inherit; }
-.localist-events .localist-widget-hl .event-card .event-short-date { background: #007bc8; }
+.localist-events .localist-widget-hl .event-card .event-short-date { background: #0277BD; }
 .localist-events .localist-widget-hl .event-card { -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: -webkit-box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease; transition: -moz-box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease; transition: box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease; border: none; }
 .localist-events .localist-widget-hl .event-card:hover { -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); }
 
