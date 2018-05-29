@@ -670,6 +670,19 @@ function express_localist_bundle_secure_permissions($role) {
       'view any localist_events bean',
       'administer localist settings',
     ),
+    'edit_my_content' => array(
+      'view any localist_events bean',
+    ),
+    'edit_only' => array(
+      'edit any localist_events bean',
+      'view any localist_events bean',
+    ),
+    'site_editor' => array(
+      'create any localist_events bean',
+      'delete any localist_events bean',
+      'edit any localist_events bean',
+      'view any localist_events bean',
+    ),
     'site_owner' => array(
       'create any localist_events bean',
       'delete any localist_events bean',
