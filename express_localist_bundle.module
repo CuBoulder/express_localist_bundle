@@ -403,6 +403,9 @@ function express_localist_bundle_preprocess_entity(&$vars) {
       }
     }
 
+    // Add a unique value to prevent displaying the localist cached version.
+    $configs[] = 'express-cc=' . $vars['bean']->changed;
+
     $vars['localist_classes'] = join(' ', $localist_classes);
     $vars['widget_url'] = $end_point . '/widget/' . $type . '?' . join('&', $configs);
     $vars['widget_configs'] = $configs;
