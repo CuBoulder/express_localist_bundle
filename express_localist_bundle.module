@@ -71,6 +71,11 @@ function express_localist_must_configure() {
  * Provide places options to form.
  */
 function express_localist_bundle_places_options() {
+  // Check to see if API has been disabled.
+  if (express_localist_bundle_api_disable()) {
+    return array();
+  }
+
   $options = array();
   $end_point = variable_get('express_localist_url', NULL);
   if (!$end_point) {
@@ -129,6 +134,11 @@ function express_localist_bundle_minical_layout_options() {
  * Provide options for group field.
  */
 function express_localist_bundle_group_options() {
+  // Check to see if API has been disabled.
+  if (express_localist_bundle_api_disable()) {
+    return array();
+  }
+
   $groups = array();
   $end_point = variable_get('express_localist_url', NULL);
   if (!$end_point) {
@@ -176,6 +186,11 @@ function express_localist_bundle_group_options() {
  * Get filter options.
  */
 function express_localist_bundle_get_filter_options() {
+  // Check to see if API has been disabled.
+  if (express_localist_bundle_api_disable()) {
+    return array();
+  }
+
   $options = array();
   $end_point = variable_get('express_localist_url', NULL);
   if (!$end_point) {
@@ -404,6 +419,11 @@ function express_localist_bundle_preprocess_entity(&$vars) {
 function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $form_id) {
   if ($form['bean']['#value']->type == 'localist_events') {
 
+    // Check to see if API has been disabled.
+    if (express_localist_bundle_api_disable()) {
+      drupal_set_message('Localist events are unavailable', 'warning');
+    }
+
     // Check to see if Localist url is configured.
     $end_point = variable_get('express_localist_url', NULL);
     if (!$end_point) {
@@ -443,6 +463,11 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
     foreach ($saved_filters as $filter) {
       $saved_options['excluded'][$filter] = $filter;
     }
+
+    // Add values from API
+    $form['field_localist_groups'][LANGUAGE_NONE]['#options'] = express_localist_bundle_group_options();
+    $form['field_localist_places'][LANGUAGE_NONE]['#options'] = express_localist_bundle_places_options();
+
 
     // Get filter options.
     $filters = express_localist_bundle_get_filter_options();
@@ -501,6 +526,12 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
  */
 function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
   if ($entity_form['#entity']->type == 'localist_events') {
+
+    // Check to see if API has been disabled.
+    if (express_localist_bundle_api_disable()) {
+      drupal_set_message('Localist events are unavailable', 'warning');
+    }
+
     // Check to see if Localist url is configured.
     $end_point = variable_get('express_localist_url', NULL);
     if (!$end_point) {
@@ -526,6 +557,10 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
     // Hide filter text fields
     $entity_form['field_localist_filters']['#access'] = FALSE;
     $entity_form['field_localist_filters_excluded']['#access'] = FALSE;
+
+    // Add values from API
+    $entity_form['field_localist_groups'][LANGUAGE_NONE]['#options'] = express_localist_bundle_group_options();
+    $entity_form['field_localist_places'][LANGUAGE_NONE]['#options'] = express_localist_bundle_places_options();
 
     // Get filter values as an array.
     $saved_options = array();
@@ -588,7 +623,6 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
     }
     // Add submit function to take filter options and save them.
     $entity_form['#submit'][] = 'express_localist_bundle_save_filters';
-
   }
 }
 
@@ -718,4 +752,14 @@ function express_localist_bundle_init() {
     'cupresents.org',
   ));
   drupal_add_js(array('localist_bypass_urls' => $localist_bypass_urls), 'setting');
+}
+
+
+function express_localist_bundle_api_disable() {
+  if (variable_get('express_localist_bundle_api_disable', 0)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
