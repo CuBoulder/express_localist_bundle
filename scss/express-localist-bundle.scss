@@ -26,7 +26,9 @@ $blue: #007BC8;
   .localist_minicalendar_page_heading {
     font-weight: bold;
   }
-
+  ol.event-list {
+    overflow: hidden;
+  }
 }
 
 table.localist_minicalendar_minicalendar caption {
