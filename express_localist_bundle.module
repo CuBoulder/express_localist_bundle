@@ -468,8 +468,23 @@ function express_localist_bundle_form_bean_form_alter(&$form, &$form_state, $for
     }
 
     // Add values from API
+
     $form['field_localist_groups'][LANGUAGE_NONE]['#options'] = express_localist_bundle_group_options();
+    // Group values don't seem to get the default value set.
+    $saved_group_values = array();
+    foreach ($form['field_localist_groups'][LANGUAGE_NONE]['#entity']->field_localist_groups[LANGUAGE_NONE] as $value) {
+      $saved_group_values[] = $value['value'];
+    }
+    $form['field_localist_groups'][LANGUAGE_NONE]['#default_value'] = $saved_group_values;
+
+
     $form['field_localist_places'][LANGUAGE_NONE]['#options'] = express_localist_bundle_places_options();
+    // Place values don't seem to get the default value set.
+    $saved_place_values = array();
+    foreach ($form['field_localist_places'][LANGUAGE_NONE]['#entity']->field_localist_places[LANGUAGE_NONE] as $value) {
+      $saved_place_values[] = $value['value'];
+    }
+    $form['field_localist_places'][LANGUAGE_NONE]['#default_value'] = $saved_place_values;
 
 
     // Get filter options.
@@ -564,6 +579,22 @@ function express_localist_bundle_inline_entity_form_entity_form_alter(&$entity_f
     // Add values from API
     $entity_form['field_localist_groups'][LANGUAGE_NONE]['#options'] = express_localist_bundle_group_options();
     $entity_form['field_localist_places'][LANGUAGE_NONE]['#options'] = express_localist_bundle_places_options();
+
+
+
+    // Group values don't seem to get the default value set.
+    $saved_group_values = array();
+    foreach ($entity_form['field_localist_groups'][LANGUAGE_NONE]['#entity']->field_localist_groups[LANGUAGE_NONE] as $value) {
+      $saved_group_values[] = $value['value'];
+    }
+    $entity_form['field_localist_groups'][LANGUAGE_NONE]['#default_value'] = $saved_group_values;
+
+    // Place values don't seem to get the default value set.
+    $saved_place_values = array();
+    foreach ($entity_form['field_localist_places'][LANGUAGE_NONE]['#entity']->field_localist_places[LANGUAGE_NONE] as $value) {
+      $saved_place_values[] = $value['value'];
+    }
+    $entity_form['field_localist_places'][LANGUAGE_NONE]['#default_value'] = $saved_place_values;
 
     // Get filter values as an array.
     $saved_options = array();
